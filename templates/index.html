@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saral - Simple Answers to Complex Documents</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="random-feature-box">
+        This box will randomly change color.
+    </div>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <span class="menu-icon">☰</span>
+                <div class="logo-full">
+                    <h1 class="logo">Saral <span class="logo-hindi">सरल</span></h1>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#hero-section">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#simplify">
+                            <span class="nav-icon">📄</span>
+                            <span class="nav-text">Simplify Document</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features">
+                            <span class="nav-icon">✨</span>
+                            <span class="nav-text">Features</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#demo">
+                            <span class="nav-icon">🚀</span>
+                            <span class="nav-text">Live Demo</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="nav-text">&copy; 2025 Project Saral</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section id="hero-section" class="hero-section">
+                <div class="hero-overlay">
+
+                    <div class="hero-content">
+                        <span class="hero-pre-title">Democratizing Information</span>
+                        <h2 class="hero-title">Navigate India's Bureaucracy with <span class="highlight">Saral</span>
+                            Clarity</h2>
+                        <p class="hero-description">Government schemes, legal notices, and public service documents made
+                            simple. Upload, translate, and understand your entitlements instantly.</p>
+                        <a href="start.html" class="hero-button">Start Simplifying <span class="arrow">→</span></a>
+                    </div>
+
+                    <section id="demo" class="demo-section">
+                        <div class="demo-header">
+                            <h3>See It In Action</h3>
+                            <p>Hover over the document to see how Saral instantly detects and simplifies key
+                                information.</p>
+                        </div>
+                        <div class="demo-image-container">
+                            <img src="document.jpg" class="demo-image-before" alt="Original complex document">
+                            <img src="document2.jpg" class="demo-image-after"
+                                alt="Saral detected key points in the document">
+                        </div>
+                    </section>
+
+                </div>
+            </section>
+            <section id="features" class="features-section">
+                <div class="features-header">
+                    <h3>Understand, Apply, and Benefit</h3>
+                    <p>Go beyond translation. Saral helps you take action.</p>
+                </div>
+                <div class="features-grid">
+                    <a href="#" class="feature-card" id="card1">
+                        <div class="card-content">
+                            <h4>Scheme Eligibility</h4>
+                            <div class="card-button">Explore →</div>
+                        </div>
+                    </a>
+                    <a href="#" class="feature-card" id="card2">
+                        <div class="card-content">
+                            <h4>Legal Notices</h4>
+                            <div class="card-button">Analyze →</div>
+                        </div>
+                    </a>
+                    <a href="#" class="feature-card" id="card3">
+                        <div class="card-content">
+                            <h4>Form Assistance</h4>
+                            <div class="card-button">Get Help →</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // --- Random Mode Trigger Code ---
+
+        // 1. Get the HTML element we want to change.
+        const featureElement = document.getElementById('random-feature-box');
+
+        // 2. Define the function that contains the feature you want to trigger.
+        function triggerRandomFeature() {
+            // This is the ACTION. Change this to whatever you want to happen.
+            // For this example, we'll just log a message and change the box color.
+            console.log("Random feature activated!");
+
+            // Generate a random color for the example
+            const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            featureElement.style.backgroundColor = randomColor;
+
+            // --- This is the core logic for the random interval ---
+            scheduleNextTrigger();
+        }
+
+        // 3. Define the function that schedules the next trigger at a random time.
+        function scheduleNextTrigger() {
+            // Define your time range in milliseconds (1000ms = 1 second)
+            const minInterval = 3000; // 3 seconds
+            const maxInterval = 10000; // 10 seconds
+
+            // Calculate a random time within your range.
+            const randomTime = Math.random() * (maxInterval - minInterval) + minInterval;
+
+            console.log(`Next trigger in ${(randomTime / 1000).toFixed(2)} seconds.`);
+
+        // Set a timeout to run the feature function again after the random delay.
+        setTimeout(triggerRandomFeature, randomTime);
+}
+
+        // 4. Start the random mode! This initial call kicks everything off.
+        scheduleNextTrigger();
+    </script>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
