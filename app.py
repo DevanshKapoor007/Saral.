@@ -105,5 +105,9 @@ def start_page():
     # This tells Flask to find and show a file named start.html
     return render_template('start.html')
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
