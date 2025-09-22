@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #1a1a2e;
+        }
+        @keyframes pulse-line {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        @keyframes pulse-line-blur {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        @keyframes red-pulse-line {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        @keyframes red-pulse-line-blur {
+            0% { transform: translateY(-100px); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        .animate-pulse-line {
+            animation: pulse-line 3s infinite;
+        }
+        .animate-pulse-line-blur {
+            animation: pulse-line-blur 3s infinite;
+        }
+        .animate-red-pulse-line {
+            animation: red-pulse-line 3s infinite;
+        }
+        .animate-red-pulse-line-blur {
+            animation: red-pulse-line-blur 3s infinite;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+
+    <!-- Sign Up View -->
+    <div id="signup-view" class="flex flex-col md:flex-row w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl">
+        <!-- Left Side: Document Scanning Section -->
+        <div class="relative flex-1 bg-[#161623] p-6 md:p-12 lg:p-16 flex flex-col items-center justify-center text-white space-y-8">
+            <div class="absolute top-4 left-4 text-xl font-bold tracking-wider">travelwise</div>
+            <div class="w-full h-full flex items-center justify-center relative">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="relative w-72 h-48 sm:w-80 sm:h-52 md:w-96 md:h-64 bg-[#2f2f3e] rounded-2xl flex items-center justify-center shadow-lg">
+                        <svg class="w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v4h5v12H6z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="relative w-full h-full">
+                        <!-- Scanning lines -->
+                        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-green-500 animate-pulse-line"></div>
+                        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-green-500 blur-sm animate-pulse-line-blur"></div>
+                        <!-- Scanning corners -->
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-500"></div>
+                        <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-500"></div>
+                        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-500"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-500"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-[#2f2f3e] p-6 rounded-2xl w-full shadow-lg">
+                <div class="flex items-center mb-2">
+                    <div class="w-3 h-3 rounded-full bg-green-500 mr-2 animate-pulse"></div>
+                    <p class="text-sm text-green-500 font-semibold">Scanning Complete</p>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">Passport</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    This document is a valid travel passport from the United States of America. It is used for international travel and identification purposes. The document contains biometric data and a machine-readable zone for verification.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Sign Up Form -->
+        <div class="flex-1 bg-white p-6 md:p-12 lg:p-16 rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none">
+            
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Sign Up</h1>
+            <p class="text-gray-600 mb-6">Create your travelwise account</p>
+            
+            <form id="signup-form" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <p id="email-error" class="text-red-500 text-xs mt-1 hidden">Please enter a valid email address.</p>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="relative mt-1">
+                        <input type="password" id="password" name="password" class="block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5" onclick="togglePasswordVisibility('password')">
+                            <svg id="password-eye-open" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            </svg>
+                            <svg id="password-eye-closed" class="h-5 w-5 text-gray-400 hidden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.593 12.352a4.002 4.002 0 01-3.597 1.637 4.002 4.002 0 01-3.79-2.583l-.707.707a5.002 5.002 0 005.187 2.871l.707-.707zM10 10a2 2 0 00-2 2H6a4 4 0 11-4-4h2.002a2.002 2.002 0 001.998-2z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <div class="relative mt-1">
+                        <input type="password" id="confirm-password" name="confirm-password" class="block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5" onclick="togglePasswordVisibility('confirm-password')">
+                            <svg id="confirm-password-eye-open" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            </svg>
+                            <svg id="confirm-password-eye-closed" class="h-5 w-5 text-gray-400 hidden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.593 12.352a4.002 4.002 0 01-3.597 1.637 4.002 4.002 0 01-3.79-2.583l-.707.707a5.002 5.002 0 005.187 2.871l.707-.707zM10 10a2 2 0 00-2 2H6a4 4 0 11-4-4h2.002a2.002 2.002 0 001.998-2z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="password-error" class="text-red-500 text-xs mt-1 hidden">Passwords do not match.</p>
+                </div>
+                
+                <button type="submit" class="w-full py-3 px-4 rounded-lg text-white font-semibold shadow-lg transition duration-200 transform hover:scale-105" style="background-image: linear-gradient(135deg, #7F00FF, #E100FF);">
+                    Sign Up
+                </button>
+            </form>
+
+            <div class="mt-6 text-center text-sm text-gray-500">
+                Already have an account? <a href="#" onclick="toggleView('login')" class="font-medium text-purple-600 hover:text-purple-500">Login</a>
+            </div>
+
+            <div class="relative flex py-5 items-center">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-4 text-gray-500 text-sm">Or sign up with</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+            
+            <div class="flex justify-center space-x-4">
+                <button class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-300 shadow-md hover:bg-gray-200">
+                    <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.96 3.65 9.15 8.44 9.87V15H8v-3h2V9.5c0-2.36 1.45-3.65 3.54-3.65.95 0 1.95.17 1.95.17V8.5h-1c-1.13 0-1.47.7-1.47 1.42V12h3.5l-.57 3H14v6.87A10.005 10.005 0 0022 12z"/></svg>
+                </button>
+                <button class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-300 shadow-md hover:bg-gray-200">
+                    <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.19 12.01c-.04.14-.14.28-.24.4-.14.16-.3.33-.48.45-.19.14-.4.27-.6.39-.23.14-.48.26-.74.37-.29.12-.59.22-.9.31-.34.1-.69.17-1.04.22-.4.06-.82.1-1.24.1-.47 0-.94-.04-1.41-.11-.47-.07-.94-.18-1.41-.33-.47-.15-.92-.35-1.37-.59-.44-.24-.86-.53-1.27-.85-.14-.1-.28-.2-.4-.3-.15-.1-.28-.22-.4-.36-.12-.14-.23-.29-.32-.45-.1-.16-.18-.33-.26-.5-.08-.17-.15-.35-.2-.53-.06-.18-.08-.37-.1-.56-.01-.2-.02-.4-.02-.6s.01-.4.02-.6c.01-.2.04-.39.08-.57.04-.18.1-.35.17-.52.08-.16.16-.31.25-.46.09-.15.2-.28.32-.4.13-.13.28-.25.44-.36.16-.12.33-.23.51-.34.19-.11.38-.21.58-.29.2-.08.4-.15.61-.22.21-.06.43-.12.65-.16.22-.04.44-.06.67-.08.23-.02.47-.02.7-.02.26 0 .52.01.78.02.26.01.52.04.78.08.26.04.5.1.75.17.25.07.48.16.7.26.22.1.43.21.63.33.2.12.39.25.57.4.18.15.34.31.49.49.14.17.27.35.38.54.11.2.2.4.28.61.08.2.14.41.19.63.05.22.07.44.09.67.01.23.02.47.02.7s-.01.47-.02.7c-.01.23-.04.45-.09.68zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                </button>
+                <button class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-300 shadow-md hover:bg-gray-200">
+                    <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M22.67 12c0-5.96-4.71-10.84-10.82-10.84-5.96 0-10.85 4.71-10.85 10.84s4.71 10.84 10.85 10.84c6.1 0 10.82-4.71 10.82-10.84zm-6.24 1.76c-.7.63-1.63 1.05-2.6 1.05-.97 0-1.9-.42-2.6-1.05-1.42-1.27-2.31-3.07-2.31-5.06h-1.3v-2.12c0-.5-.4-.9-.9-.9h-.5c-.5 0-.9.4-.9.9v2.12h-1.3c-.5 0-.9.4-.9.9v1.3c0 .5.4.9.9.9h1.3v2.56c0 1.25.33 2.45.96 3.49.64 1.05 1.55 1.94 2.65 2.56 1.1.62 2.27.93 3.49.93 1.22 0 2.39-.31 3.49-.93 1.1-.62 2.01-1.51 2.65-2.56.63-1.04.96-2.24.96-3.49v-2.56h1.3c.5 0 .9-.4.9-.9z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login View (Separate Container) -->
+    <div id="login-view" class="hidden flex flex-col md:flex-row w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl">
+        <!-- Left Side: Document Scanning Section -->
+        <div class="relative flex-1 bg-[#161623] p-6 md:p-12 lg:p-16 flex flex-col items-center justify-center text-white space-y-8">
+            <div class="absolute top-4 left-4 text-xl font-bold tracking-wider">travelwise</div>
+            <div class="w-full h-full flex items-center justify-center relative">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="relative w-72 h-48 sm:w-80 sm:h-52 md:w-96 md:h-64 bg-[#2f2f3e] rounded-2xl flex items-center justify-center shadow-lg">
+                        <svg class="w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v4h5v12H6z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="relative w-full h-full">
+                        <!-- Scanning lines -->
+                        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-red-500 animate-red-pulse-line"></div>
+                        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-red-500 blur-sm animate-red-pulse-line-blur"></div>
+                        <!-- Scanning corners -->
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red-500"></div>
+                        <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red-500"></div>
+                        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red-500"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-500"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-[#2f2f3e] p-6 rounded-2xl w-full shadow-lg">
+                <div class="flex items-center mb-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500 mr-2 animate-pulse"></div>
+                    <p class="text-sm text-red-500 font-semibold">Verification Failed</p>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">Fraudulent Document</h2>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    This document appears to be fraudulent. Please use a valid, government-issued document to proceed with login. If this is a mistake, contact support.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="flex-1 bg-white p-6 md:p-12 lg:p-16 rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+            <p class="text-gray-600 mt-2">Log in to your account to continue</p>
+    
+            <form id="login-form" class="space-y-6 mt-6">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700 text-left">Email</label>
+                    <input type="email" id="login-email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    <p id="login-email-error" class="text-red-500 text-xs mt-1 text-left hidden">Please enter a valid email address.</p>
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-700 text-left">Password</label>
+                    <div class="relative mt-1">
+                        <input type="password" id="login-password" name="password" class="block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                        <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5" onclick="togglePasswordVisibility('login-password')">
+                            <svg id="login-password-eye-open" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            </svg>
+                            <svg id="login-password-eye-closed" class="h-5 w-5 text-gray-400 hidden" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.593 12.352a4.002 4.002 0 01-3.597 1.637 4.002 4.002 0 01-3.79-2.583l-.707.707a5.002 5.002 0 005.187 2.871l.707-.707zM10 10a2 2 0 00-2 2H6a4 4 0 11-4-4h2.002a2.002 2.002 0 001.998-2z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full py-3 px-4 rounded-lg text-white font-semibold shadow-lg transition duration-200 transform hover:scale-105" style="background-image: linear-gradient(135deg, #7F00FF, #E100FF);">
+                    Login
+                </button>
+            </form>
+    
+            <div class="mt-6 text-center text-sm text-gray-500">
+                Don't have an account? <a href="#" onclick="toggleView('signup')" class="font-medium text-purple-600 hover:text-purple-500">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    function togglePasswordVisibility(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        const eyeOpen = document.getElementById(inputId + '-eye-open');
+        const eyeClosed = document.getElementById(inputId + '-eye-closed');
+        
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeOpen.classList.add('hidden');
+            eyeClosed.classList.remove('hidden');
+        } else {
+            passwordInput.type = "password";
+            eyeOpen.classList.remove('hidden');
+            eyeClosed.classList.add('hidden');
+        }
+    }
+
+    function toggleView(view) {
+        const signupView = document.getElementById('signup-view');
+        const loginView = document.getElementById('login-view');
+        
+        if (view === 'login') {
+            signupView.classList.add('hidden');
+            loginView.classList.remove('hidden');
+        } else {
+            signupView.classList.remove('hidden');
+            loginView.classList.add('hidden');
+        }
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const email = document.getElementById('email').value;
+        const passwordError = document.getElementById('password-error');
+        const emailError = document.getElementById('email-error');
+        let isValid = true;
+
+        // Reset error messages
+        passwordError.classList.add('hidden');
+        emailError.classList.add('hidden');
+
+        // Email validation using a simple regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            emailError.classList.remove('hidden');
+            isValid = false;
+        }
+
+        // Password matching validation
+        if (password !== confirmPassword) {
+            passwordError.classList.remove('hidden');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        } else {
+            console.log('Sign up successful!');
+            toggleView('login');
+            event.preventDefault(); 
+        }
+    });
+
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        const email = document.getElementById('login-email').value;
+        const emailError = document.getElementById('login-email-error');
+        let isValid = true;
+
+        emailError.classList.add('hidden');
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            emailError.classList.remove('hidden');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        } else {
+            console.log('Login successful!');
+            window.location.href = "{{ url_for('index') }}";
+            event.preventDefault(); 
+        }
+    });
+</script>
+</body>
+</html>

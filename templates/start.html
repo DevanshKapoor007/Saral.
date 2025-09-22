@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Scanning and Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #1a1a2e;
+        }
+
+        @keyframes scan-line-pulse-green {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes scan-line-blur-green {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes scan-line-pulse-red {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes scan-line-blur-red {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        .animate-scan-green {
+            animation: scan-line-pulse-green 2s infinite;
+        }
+
+        .animate-scan-blur-green {
+            animation: scan-line-blur-green 2s infinite;
+        }
+
+        .animate-scan-red {
+            animation: scan-line-pulse-red 2s infinite;
+        }
+
+        .animate-scan-blur-red {
+            animation: scan-line-blur-red 2s infinite;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center min-h-screen p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="w-full max-w-6xl flex justify-between items-center py-6 px-4 md:px-0">
+
+        <nav>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-6xl mt-8">
+
+        <!-- Document Scanning Section -->
+        <section id="scan-page"
+            class="bg-[#161623] rounded-3xl p-8 md:p-16 flex flex-col items-center text-center shadow-2xl mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Document Scanning</h1>
+            <p class="mt-2 text-xl text-gray-400 max-w-2xl">
+                Upload your document to instantly scan and verify its authenticity.
+            </p>
+            <div
+                class="relative w-full max-w-xl h-96 mt-12 bg-[#2f2f3e] rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+                <div id="scanning-document-icon" class="flex flex-col items-center">
+                    <svg class="w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v4h5v12H6z" />
+                    </svg>
+                    <p id="scanning-status" class="mt-2 text-white">Ready to Upload</p>
+                </div>
+                <div id="scanning-animation" class="absolute inset-0 flex items-center justify-center hidden">
+                    <div class="relative w-full h-full">
+                        <div id="scan-line" class="absolute top-1/2 left-0 right-0 h-0.5"
+                            style="transform: translateY(-100px);"></div>
+                        <div id="scan-line-blur" class="absolute top-1/2 left-0 right-0 h-0.5 blur-sm"
+                            style="transform: translateY(-100px);"></div>
+                        <div id="scan-top-left" class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2"></div>
+                        <div id="scan-top-right" class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2"></div>
+                        <div id="scan-bottom-left" class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2"></div>
+                        <div id="scan-bottom-right" class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative w-full mt-8">
+                <input type="file" id="upload-file-input" class="hidden" accept="image/*,application/pdf">
+                <label for="upload-file-input"
+                    class="w-full py-3 px-8 rounded-lg text-white font-semibold shadow-lg transition duration-200 transform hover:scale-105 cursor-pointer block"
+                    style="background-image: linear-gradient(135deg, #7F00FF, #E100FF);">
+                    Choose Document to Scan
+                </label>
+            </div>
+        </section>
+
+        <!-- Document Analysis Section -->
+        <section id="analysis-page"
+            class="bg-[#161623] rounded-3xl p-8 md:p-16 flex-col items-center text-center shadow-2xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Document Analysis</h1>
+
+            <div id="analysis-container" class="w-full max-w-xl mt-8">
+                <p class="text-white text-lg">Click the button below to analyze your document.</p>
+                <div class="mt-8">
+                    <button id="analyze-btn"
+                        class="w-full py-3 px-8 rounded-lg text-white font-semibold shadow-lg transition duration-200 transform hover:scale-105"
+                        style="background-image: linear-gradient(135deg, #7F00FF, #E100FF);">
+                        ✨ Analyze Document
+                    </button>
+                    <div id="loading-spinner"
+                        class="mt-4 hidden animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+                </div>
+                <div id="analysis-results" class="mt-8 hidden"></div>
+            </div>
+        </section>
+
+    </main>
+    <script>
+
+        // Get all the DOM elements we need to work with
+        const uploadInput = document.getElementById('upload-file-input');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const resultsDiv = document.getElementById('analysis-results');
+        const statusText = document.getElementById('scanning-status');
+
+        // Variable to hold the file the user selects
+        let selectedFile = null;
+
+        // --- 1. Listen for when a user chooses a file ---
+        uploadInput.addEventListener('change', function (event) {
+            // Check if the user selected a file
+            if (event.target.files.length > 0) {
+                // Store the selected file
+                selectedFile = event.target.files[0];
+                // Update the status text to show the filename
+                statusText.textContent = `File Selected: ${selectedFile.name}`;
+                console.log("File ready for analysis:", selectedFile.name);
+            }
+        });
+
+        // --- 2. Listen for when the user clicks the "Analyze" button ---
+        analyzeBtn.addEventListener('click', async function () {
+            // First, check if a file has been selected
+            if (!selectedFile) {
+                alert('Please choose a document to analyze first.');
+                return;
+            }
+
+            // Show the loading spinner and clear any old results
+            loadingSpinner.classList.remove('hidden');
+            resultsDiv.innerHTML = '';
+            resultsDiv.classList.add('hidden');
+
+            // Prepare the file to be sent to the backend
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('language', 'English'); // You can add a dropdown for this later
+
+            try {
+                // Send the file to your Flask backend using fetch
+                // We use url_for to get the correct path to our 'simplify_document' function
+                const response = await fetch("{{ url_for('simplify_document') }}", {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // If successful, format and display the result
+                    resultsDiv.innerHTML = `
+                    <h3 class="text-2xl font-bold text-white mb-4">Analysis Complete</h3>
+                    <p class="text-gray-300 text-left whitespace-pre-wrap">${result.simplified_text}</p>
+                `;
+                } else {
+                    // If the backend returns an error, display it
+                    resultsDiv.innerHTML = `<p class="text-red-500">Error: ${result.error}</p>`;
+                }
+
+            } catch (error) {
+                // Handle network errors or other unexpected issues
+                resultsDiv.innerHTML = `<p class="text-red-500">An unexpected error occurred. Please check the console.</p>`;
+                console.error('Error:', error);
+            } finally {
+                // No matter what, hide the spinner and show the results area
+                loadingSpinner.classList.add('hidden');
+                resultsDiv.classList.remove('hidden');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -95,5 +95,15 @@ def simplify_document():
 def index():
     return render_template('index.html')
 
+@app.route('/signup')
+def signin_page():
+    # You would create a signin.html file in your templates folder
+    return render_template('signup.html')
+
+@app.route('/start')
+def start_page():
+    # This tells Flask to find and show a file named start.html
+    return render_template('start.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

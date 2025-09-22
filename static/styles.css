@@ -162,7 +162,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background: url('https://images.unsplash.com/photo-1598072708392-71864147d519?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; /* A more relevant placeholder */
+    background: url('background.jpg'); /* A more relevant placeholder */
     color: var(--white-color);
 }
 
@@ -227,6 +227,33 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+}
+/* --- Styling for Sign In / Sign Up --- */
+
+/* This pushes the auth links to the bottom */
+.main-nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-nav {
+    list-style: none;
+    margin-top: auto; /* Pushes to the bottom */
+    padding-top: 1rem;
+    border-top: 1px solid #2a344a; /* Adds a separator line */
+}
+
+/* Special styling for the Sign Up button */
+.signup-button a {
+    background-color: var(--primary-color);
+    color: var(--white-color) !important;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.signup-button a:hover {
+    background-color: #0048cc;
 }
 
 .feature-card {

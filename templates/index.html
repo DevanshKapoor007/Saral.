@@ -36,12 +36,7 @@
                             <span class="nav-text">Simplify Document</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#features">
-                            <span class="nav-icon">✨</span>
-                            <span class="nav-text">Features</span>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="#demo">
                             <span class="nav-icon">🚀</span>
@@ -49,6 +44,20 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="auth-nav">
+        <li>
+            <a href="{{ url_for('signin_page') }}">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">Sign In</span>
+            </a>
+        </li>
+        <li class="signup-button">
+            <a href="{{ url_for('signin_page') }}">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-text">Sign Up</span>
+            </a>
+        </li>
+    </ul>
             </nav>
             <div class="sidebar-footer">
                 <span class="nav-text">&copy; 2025 Project Saral</span>
@@ -60,23 +69,16 @@
                 <div class="hero-overlay">
 
                     <div class="hero-content">
-                        <span class="hero-pre-title">Democratizing Information</span>
-                        <h2 class="hero-title">Navigate India's Bureaucracy with <span class="highlight">Saral</span>
-                            Clarity</h2>
-                        <p class="hero-description">Government schemes, legal notices, and public service documents made
-                            simple. Upload, translate, and understand your entitlements instantly.</p>
-                        <a href="start.html" class="hero-button">Start Simplifying <span class="arrow">→</span></a>
+                        <h2 class="hero-title">"Your documents, made simple. Your rights, made clear."</h2>
+                        <a href="{{ url_for('start_page') }}" class="hero-button">Start Simplifying <span class="arrow">→</span></a>
                     </div>
 
                     <section id="demo" class="demo-section">
                         <div class="demo-header">
-                            <h3>See It In Action</h3>
-                            <p>Hover over the document to see how Saral instantly detects and simplifies key
-                                information.</p>
                         </div>
                         <div class="demo-image-container">
-                            <img src="document.jpg" class="demo-image-before" alt="Original complex document">
-                            <img src="document2.jpg" class="demo-image-after"
+                            <img src="{{ url_for('static', filename='document.jpg') }}" class="demo-image-before" alt="Original complex document">
+                            <img src="{{ url_for('static', filename='document2.jpg') }}" class="demo-image-after"
                                 alt="Saral detected key points in the document">
                         </div>
                     </section>
