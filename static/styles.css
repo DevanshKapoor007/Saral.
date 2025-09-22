@@ -138,6 +138,25 @@ body {
     transition: opacity 0.2s ease 0.1s;
 }
 
+/* Styling for the Challenge Pop-up */
+#challenge-box {
+    position: fixed; /* Makes it stay in one place on the screen */
+    bottom: 20px;
+    right: 20px;
+    background-image: linear-gradient(135deg, #7F00FF, #E100FF);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    
+    /* For the fade in/out effect */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    /* Keeps it on top of other content */
+    z-index: 1000;
+}
+
 .sidebar:hover .logo-full {
     opacity: 1;
 }
